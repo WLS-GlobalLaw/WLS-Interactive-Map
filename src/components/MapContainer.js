@@ -15,9 +15,8 @@ export default class MapContainer extends Component {
   render() {
     return (
       <Map center={this.state.position} zoom={1} id="map" className="map">
-        {console.log(pub_access_token)}
         <TileLayer
-          url={`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${pub_access_token}`}
+          url={`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${process.env.ACCESS_TOKEN}`}
           attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
           minZoom={3}
           maxZoom={10}
