@@ -3,6 +3,8 @@ import { Map, TileLayer, GeoJSON } from "react-leaflet";
 
 import "../styles/MapContainer.scss";
 
+import Buttons from "./Buttons";
+
 // this will switch between Netlify deployment env route and local development env route
 const ACCESS_TOKEN =
   process.env.REACT_APP_ACCESS_TOKEN || process.env.REACT_APP_ACC_TOKEN_LOCAL;
@@ -17,6 +19,7 @@ export default class MapContainer extends Component {
   render() {
     return (
       <Map center={this.state.position} zoom={1} id="map" className="map">
+        <Buttons />
         <TileLayer
           url={`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${ACCESS_TOKEN}`}
           attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'

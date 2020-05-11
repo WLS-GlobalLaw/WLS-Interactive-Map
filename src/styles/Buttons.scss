@@ -1,0 +1,28 @@
+@import "./shared-styles.scss";
+
+div.button-container {
+  position: relative;
+  z-index: 999;
+  border: 1px solid $wls-yellow;
+  padding: 20px;
+  background-color: $wls-greyblack;
+  margin-left: 5rem;
+  box-shadow: 0.5rem 1rem 1.5rem rgba(0, 0, 0, 0.473);
+
+  & .button {
+    display: block;
+    font-size: 2rem;
+    width: 40rem;
+    padding: 1.3rem 2rem;
+    cursor: pointer;
+    background: $wls-brightblue;
+    border: 0;
+    border-radius: 1rem;
+    color: white;
+    font-weight: 700;
+  }
+
+  & .button:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
+}
