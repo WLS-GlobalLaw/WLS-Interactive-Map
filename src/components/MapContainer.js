@@ -3,6 +3,7 @@ import { Map, TileLayer, GeoJSON } from "react-leaflet";
 
 import "../styles/MapContainer.scss";
 
+// this will switch between Netlify deployment env route and local development env route
 const ACCESS_TOKEN =
   process.env.REACT_APP_ACCESS_TOKEN || process.env.REACT_APP_ACC_TOKEN_LOCAL;
 
