@@ -3,7 +3,8 @@ import { Map, TileLayer, GeoJSON } from "react-leaflet";
 
 import "../styles/MapContainer.scss";
 
-const pub_access_token = `pk.eyJ1IjoiY2hyaXNzdGFuYXJzZW5hdWx0IiwiYSI6ImNrOWY1dDV4NjA5bnczZW9iNXB4dmkzcHIifQ.03UOcpgGEfNQbYGxuVBkBQ`;
+const ACCESS_TOKEN =
+  process.env.REACT_APP_ACCESS_TOKEN || process.env.REACT_APP_ACC_TOKEN_LOCAL;
 
 export default class MapContainer extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ export default class MapContainer extends Component {
     return (
       <Map center={this.state.position} zoom={1} id="map" className="map">
         <TileLayer
-          url={`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${process.env.REACT_APP_ACCESS_TOKEN}`}
+          url={`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${ACCESS_TOKEN}`}
           attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
           minZoom={3}
           maxZoom={10}
@@ -27,7 +28,7 @@ export default class MapContainer extends Component {
           id="chrisstanarsenault/cka0cv5op0e971ipj4a8qqnax"
           tileSize={512}
           zoomOffset={-1}
-          accessToken={pub_access_token}
+          accessToken={ACCESS_TOKEN}
         />
       </Map>
     );
