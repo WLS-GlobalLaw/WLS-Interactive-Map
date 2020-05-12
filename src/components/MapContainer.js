@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Map, TileLayer, GeoJSON } from "react-leaflet";
 
 import "../styles/MapContainer.scss";
+import dummygeo from "../data/dummygeo.json";
 
 import Buttons from "./Buttons";
 
