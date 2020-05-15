@@ -1,9 +1,11 @@
 @import "./shared-styles.scss";
 
 div.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed; /* Stay in place */
   z-index: 1000; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -13,22 +15,28 @@ div.modal {
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 
   & .modal-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
     background-color: #fefefe;
     margin: auto;
-    border: 1px solid #888;
     width: 80%;
+    height: 80vh;
     box-shadow: 0 0 40px #000000b3;
     border-radius: 10px;
     text-align: center;
     font-size: 2.2rem;
-    overflow: auto;
-    max-height: 90%;
+    border: 5px solid $wls-yellow;
 
     & .inner-content {
       border: 4px solid $wls-yellow;
       padding: 20px;
       margin: 40px;
+      overflow: auto;
       white-space: pre-wrap;
+      height: 80rem;
 
       & h2 {
         font-size: 4.5rem;
@@ -48,8 +56,10 @@ div.modal {
 
 /* The Close Button */
 .close {
+  position: absolute;
+  right: 0;
+  top: 0;
   color: $wls-brightblue;
-  float: right;
   font-size: 28px;
   font-weight: bold;
   border: 1px solid $wls-brightblue;

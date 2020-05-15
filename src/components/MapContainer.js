@@ -17,7 +17,7 @@ export default class MapContainer extends Component {
       position: [0, 0],
       isLawSelected: false,
       currentLawSelected: "",
-      isModalShown: true,
+      isModalShown: false,
     };
     this.changeCurrentLaw = this.changeCurrentLaw.bind(this);
     this.geoRef = React.createRef();
