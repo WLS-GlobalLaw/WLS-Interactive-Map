@@ -18,9 +18,11 @@ export default class MapContainer extends Component {
       isLawSelected: false,
       currentLawSelected: "",
       isModalShown: false,
+      isSmallScreen: false,
     };
     this.changeCurrentLaw = this.changeCurrentLaw.bind(this);
     this.geoRef = React.createRef();
+    this.mapRef = React.createRef();
     this.updateGeo = this.updateGeo.bind(this);
     this.getGeoColor = this.getGeoColor.bind(this);
     this.lawGeoStyle = this.lawGeoStyle.bind(this);
@@ -29,6 +31,7 @@ export default class MapContainer extends Component {
     this.launchModal = this.launchModal.bind(this);
     this.onEachFeature = this.onEachFeature.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.resizeScreen = this.resizeScreen.bind(this);
   }
 
   changeCurrentLaw(e) {
@@ -143,11 +146,30 @@ export default class MapContainer extends Component {
   handleClose() {
     this.setState({ isModalShown: false });
   }
+
+  resizeScreen() {
+    if (window.innerWidth < 400) {
+      this.setState({ isSmallScreen: true });
+    }
+  }
+
+  componentDidMount() {
+    // const map = this.mapRef.current.leafletElement;
+    // setTimeout(() => map.invalidateSize(true), 250);
+    window.addEventListener("resize", this.resizeScreen());
+  }
+
   render() {
     return (
       <Fragment>
         {this.state.isModalShown && <Modal handleClose={this.handleClose} />}
-        <Map center={this.state.position} zoom={1} id="map" className="map">
+        <Map
+          center={this.state.position}
+          zoom={1}
+          id="map"
+          className="map"
+          ref={this.mapRef}
+        >
           <Buttons changeLaw={this.changeCurrentLaw} />
           <TileLayer
             url={`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${ACCESS_TOKEN}`}
@@ -156,8 +178,6 @@ export default class MapContainer extends Component {
             maxZoom={10}
             zoomDelta={0.1}
             zoomSnap={0}
-            //id="mapbox/streets-v11"
-            //id="chrisstanarsenault/cka0bh3lk13qg1it67mcpj4gg"
             id="chrisstanarsenault/cka0cv5op0e971ipj4a8qqnax"
             tileSize={512}
             zoomOffset={-1}

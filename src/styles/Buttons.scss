@@ -39,3 +39,41 @@ div.button-container {
     margin-top: 0;
   }
 }
+
+@media (min-width: 320px) and (max-width: 640px) {
+  div.button-container {
+    min-width: 100vw;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    padding: 0.5rem;
+    border-width: 1px;
+    box-shadow: inset 0rem 0rem 0.1rem 0.2rem rgba(211, 211, 211, 0.911);
+
+    & .button {
+      display: block;
+      font-size: 1.5rem;
+      width: 100%;
+      padding: 1.3rem 2rem;
+    }
+
+    & .button:not(:last-child) {
+      margin-bottom: 0.7rem;
+    }
+
+    & h3 {
+      font-size: 1.7rem;
+      padding: 0.2rem 0.3rem 0 0.3rem;
+    }
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  div.button-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+  }
+}
