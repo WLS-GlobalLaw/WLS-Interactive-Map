@@ -5,7 +5,7 @@ div.modal {
   justify-content: center;
   align-items: center;
   position: fixed; /* Stay in place */
-  z-index: 1000; /* Sit on top */
+  z-index: 1001; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -29,6 +29,7 @@ div.modal {
     text-align: center;
     font-size: 2.2rem;
     border: 5px solid $wls-yellow;
+    text-align: left;
 
     & .inner-content {
       border: 4px solid $wls-yellow;
@@ -50,30 +51,64 @@ div.modal {
         margin-top: 5rem;
         font-size: 3.5rem;
       }
+      & h2,
+      h3 {
+        text-align: center;
+      }
     }
+  }
+  /* The Close Button */
+  & .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: $wls-brightblue;
+    font-size: 28px;
+    font-weight: bold;
+    border: 1px solid $wls-brightblue;
+    padding: 1px 5px;
+    margin-right: 7px;
+    margin-top: 10px;
+    border-radius: 10px;
+    transition: all 0.2s ease-in;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: white;
+    background-color: $wls-brightblue;
+    text-decoration: none;
+    cursor: pointer;
   }
 }
 
-/* The Close Button */
-.close {
-  position: absolute;
-  right: 0;
-  top: 0;
-  color: $wls-brightblue;
-  font-size: 28px;
-  font-weight: bold;
-  border: 1px solid $wls-brightblue;
-  padding: 1px 5px;
-  margin-right: 7px;
-  margin-top: 10px;
-  border-radius: 10px;
-  transition: all 0.2s ease-in;
-}
+@media screen and (min-width: 320px) and (max-width: 640px) {
+  div.modal {
+    & .modal-content {
+      height: 90vh;
+      font-size: 1.6rem;
 
-.close:hover,
-.close:focus {
-  color: white;
-  background-color: $wls-brightblue;
-  text-decoration: none;
-  cursor: pointer;
+      & .inner-content {
+        margin: 0;
+        border: 0;
+
+        & h2 {
+          font-size: 2.5rem;
+        }
+
+        & p {
+          white-space: pre-wrap;
+        }
+
+        & h3 {
+          margin-top: 5rem;
+          font-size: 2rem;
+        }
+      }
+    }
+    & .close {
+      background-color: $wls-brightblue;
+      color: white;
+    }
+  }
 }
