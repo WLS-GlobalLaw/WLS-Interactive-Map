@@ -18,7 +18,7 @@ export default class MapContainer extends Component {
       isLawSelected: false,
       currentLawSelected: "",
       isModalShown: false,
-      isSmallScreen: false,
+      zoomLevel: 1,
     };
     this.changeCurrentLaw = this.changeCurrentLaw.bind(this);
     this.geoRef = React.createRef();
@@ -148,14 +148,17 @@ export default class MapContainer extends Component {
   }
 
   resizeScreen() {
-    if (window.innerWidth < 400) {
-      this.setState({ isSmallScreen: true });
+    const innerWidth = window.innerWidth;
+    if (innerWidth < 1024 && innerWidth > 701) {
+      this.setState({ zoomLevel: 2 });
+    } else if (innerWidth < 700) {
+      this.setState({ zoomLevel: 1 });
+    } else {
+      this.setState({ zoomLevel: 3 });
     }
   }
 
   componentDidMount() {
-    // const map = this.mapRef.current.leafletElement;
-    // setTimeout(() => map.invalidateSize(true), 250);
     window.addEventListener("resize", this.resizeScreen());
   }
 
@@ -165,7 +168,7 @@ export default class MapContainer extends Component {
         {this.state.isModalShown && <Modal handleClose={this.handleClose} />}
         <Map
           center={this.state.position}
-          zoom={1}
+          zoom={0}
           id="map"
           className="map"
           ref={this.mapRef}
@@ -174,7 +177,7 @@ export default class MapContainer extends Component {
           <TileLayer
             url={`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${ACCESS_TOKEN}`}
             attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
-            minZoom={3}
+            minZoom={this.state.zoomLevel}
             maxZoom={10}
             zoomDelta={0.1}
             zoomSnap={0}
