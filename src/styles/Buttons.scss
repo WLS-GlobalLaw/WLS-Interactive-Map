@@ -2,7 +2,7 @@
 
 div.button-container {
   position: relative;
-  z-index: 999;
+  z-index: 1000;
   max-width: 45rem;
   border: 5px solid lightgrey;
   padding: 20px;
@@ -44,8 +44,7 @@ div.button-container {
   div.button-container {
     min-width: 100vw;
     margin: 0;
-    position: absolute;
-    bottom: 0;
+
     padding: 0.5rem;
     border-width: 1px;
     box-shadow: inset 0rem 0rem 0.1rem 0.2rem rgba(211, 211, 211, 0.911);
@@ -70,9 +69,6 @@ div.button-container {
 
 @media (min-width: 641px) and (max-width: 1024px) {
   div.button-container {
-    position: absolute;
-    bottom: 0;
-    left: 0;
     margin-left: 2rem;
     margin-bottom: 2rem;
   }
