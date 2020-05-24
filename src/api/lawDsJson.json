@@ -1,0 +1,24 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "ADMIN": "Afghanistan",
+        "ISO_A3": "AFG",
+        "law-ds": "law-ds"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [71.049802287000091, 38.408664450000089],
+            [71.057140340000046, 38.409026184000084],
+            [71.064943482000103, 38.411816712000046],
+            [71.076984091000043, 38.412178447000144]
+          ]
+        ]
+      }
+    }
+  ]
+}
