@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from "react";
 import { Map, TileLayer, GeoJSON } from "react-leaflet";
 import "../styles/MapContainer.scss";
-import dummygeo from "../data/dummygeo.json";
 
 import Buttons from "./Buttons";
 import Modal from "./Modal";
+import axios from "axios";
 
 // this will switch between Netlify deployment env route and local development env route
 const ACCESS_TOKEN =
@@ -19,7 +19,9 @@ export default class MapContainer extends Component {
       currentLawSelected: "",
       isModalShown: false,
       zoomLevel: 1,
+      geoData: null,
     };
+
     this.changeCurrentLaw = this.changeCurrentLaw.bind(this);
     this.geoRef = React.createRef();
     this.mapRef = React.createRef();
@@ -32,19 +34,23 @@ export default class MapContainer extends Component {
     this.onEachFeature = this.onEachFeature.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.resizeScreen = this.resizeScreen.bind(this);
+    this.getApi = this.getApi.bind(this);
   }
 
   changeCurrentLaw(e) {
     let lawClicked = e.target.id;
+
     // first turn state of isLawSelected to false, so when updateGeo is called,
     // is will switch to true and it will force rerender of the component
     this.setState(
       {
         isLawSelected: false,
+        geoData: null,
         currentLawSelected: lawClicked,
       },
       () => {
         this.updateGeo();
+        this.getApi(lawClicked);
       }
     );
   }
@@ -52,7 +58,6 @@ export default class MapContainer extends Component {
   // this is called to render the GeoJson styling
   updateGeo() {
     this.setState({ isLawSelected: true });
-    this.lawGeoStyle();
   }
 
   // this will only select the countries that match the law being selected for coloring
@@ -72,7 +77,8 @@ export default class MapContainer extends Component {
     if (e) {
       if (currentLaw === "law-ds") {
         return {
-          fillColor: this.getGeoColor(e.properties["law-ds"]),
+          // fillColor: this.getGeoColor(e.properties["law-ds"]),
+          fillColor: "#e5cf33",
           weight: 2,
           opacity: 1,
           color: "none",
@@ -80,7 +86,7 @@ export default class MapContainer extends Component {
         };
       } else if (currentLaw === "law-as") {
         return {
-          fillColor: this.getGeoColor(e.properties["law-as"]),
+          fillColor: "#e5cf33",
           weight: 2,
           opacity: 1,
           color: "none",
@@ -88,7 +94,7 @@ export default class MapContainer extends Component {
         };
       } else if (currentLaw === "law-dg") {
         return {
-          fillColor: this.getGeoColor(e.properties["law-dg"]),
+          fillColor: "#e5cf33",
           weight: 2,
           opacity: 1,
           color: "none",
@@ -100,15 +106,12 @@ export default class MapContainer extends Component {
 
   highlightFeature(e) {
     let layer = e.target;
-
-    if (layer.feature.properties[this.state.currentLawSelected]) {
-      layer.setStyle({
-        weight: 1,
-        color: "#363839",
-        dashArray: "",
-        fillOpacity: 0.5,
-      });
-    }
+    layer.setStyle({
+      weight: 1,
+      color: "#363839",
+      dashArray: "",
+      fillOpacity: 0.5,
+    });
   }
 
   resetHighlight(e) {
@@ -122,25 +125,30 @@ export default class MapContainer extends Component {
   }
 
   onEachFeature(feature, layer) {
-    if (feature.properties["law-ds"]) {
-      layer.on({
-        mouseover: this.highlightFeature,
-        mouseout: this.resetHighlight,
-        click: this.launchModal,
-      });
-    } else if (feature.properties["law-as"]) {
-      layer.on({
-        mouseover: this.highlightFeature,
-        mouseout: this.resetHighlight,
-        click: this.launchModal,
-      });
-    } else if (feature.properties["law-dg"]) {
-      layer.on({
-        mouseover: this.highlightFeature,
-        mouseout: this.resetHighlight,
-        click: this.launchModal,
-      });
-    }
+    layer.on({
+      mouseover: this.highlightFeature,
+      mouseout: this.resetHighlight,
+      click: this.launchModal,
+    });
+    // if (feature.properties["law-ds"]) {
+    //   layer.on({
+    //     mouseover: this.highlightFeature,
+    //     mouseout: this.resetHighlight,
+    //     click: this.launchModal,
+    //   });
+    // } else if (feature.properties["law-as"]) {
+    //   layer.on({
+    //     mouseover: this.highlightFeature,
+    //     mouseout: this.resetHighlight,
+    //     click: this.launchModal,
+    //   });
+    // } else if (feature.properties["law-dg"]) {
+    //   layer.on({
+    //     mouseover: this.highlightFeature,
+    //     mouseout: this.resetHighlight,
+    //     click: this.launchModal,
+    //   });
+    // }
   }
 
   handleClose() {
@@ -158,7 +166,24 @@ export default class MapContainer extends Component {
     }
   }
 
-  componentDidMount() {
+  async getApi(law) {
+    let jsonFileToUse;
+    if (law === "law-ds") {
+      jsonFileToUse = "lawDsJson";
+    } else if (law === "law-as") {
+      jsonFileToUse = "lawAsJson";
+    } else if (law === "law-dg") {
+      jsonFileToUse = "lawDgJson";
+    }
+
+    const apiUrl = "/.netlify/functions/server/api/";
+    let response = await axios.get(`${apiUrl}${law}`);
+    let feature = await response.data[jsonFileToUse];
+
+    this.setState({ geoData: feature });
+  }
+
+  async componentDidMount() {
     window.addEventListener("resize", this.resizeScreen());
   }
 
@@ -186,12 +211,20 @@ export default class MapContainer extends Component {
             zoomOffset={-1}
             accessToken={ACCESS_TOKEN}
           />
-          {this.state.isLawSelected && (
+
+          {this.state.isLawSelected && this.state.geoData && (
             <GeoJSON
-              data={dummygeo}
-              style={this.lawGeoStyle}
+              data={this.state.geoData}
+              style={{
+                fillColor: "#e5cf33",
+                weight: 2,
+                opacity: 1,
+                color: "none",
+                fillOpacity: 0.7,
+              }}
               onEachFeature={this.onEachFeature}
               ref={this.geoRef}
+              key={this.state.currentLawSelected}
             />
           )}
         </Map>
