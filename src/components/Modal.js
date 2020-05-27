@@ -5,7 +5,6 @@ export default class Modal extends Component {
   render() {
     return (
       <div id="myModal" className="modal">
-        {console.log(this.props.googleSheetInfo)}
         <div className="modal-content">
           <span className="close" onClick={this.props.handleClose}>
             &times;
