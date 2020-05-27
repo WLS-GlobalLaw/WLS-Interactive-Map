@@ -20,6 +20,7 @@ export default class MapContainer extends Component {
       isModalShown: false,
       zoomLevel: 1,
       geoData: null,
+      googlesheetData: [],
     };
 
     this.changeCurrentLaw = this.changeCurrentLaw.bind(this);
@@ -35,6 +36,7 @@ export default class MapContainer extends Component {
     this.handleClose = this.handleClose.bind(this);
     this.resizeScreen = this.resizeScreen.bind(this);
     this.getApi = this.getApi.bind(this);
+    this.getGSDataAndLaunchModal = this.getGSDataAndLaunchModal.bind(this);
   }
 
   changeCurrentLaw(e) {
@@ -128,7 +130,8 @@ export default class MapContainer extends Component {
     layer.on({
       mouseover: this.highlightFeature,
       mouseout: this.resetHighlight,
-      click: this.launchModal,
+      // click: this.launchModal,
+      click: this.getGSDataAndLaunchModal,
     });
     // if (feature.properties["law-ds"]) {
     //   layer.on({
@@ -183,14 +186,52 @@ export default class MapContainer extends Component {
     this.setState({ geoData: feature });
   }
 
+  async getGSDataAndLaunchModal(e) {
+    let currentLawForGoogleSheet;
+    let currentCountry = e.target.feature.properties.ADMIN;
+
+    if (this.state.currentLawSelected === "law-ds") {
+      currentLawForGoogleSheet = "Identity";
+    } else if (this.state.currentLawSelected === "law-as") {
+      currentLawForGoogleSheet = "Autonomous Systems";
+    } else if (this.state.currentLawSelected === "law-dg") {
+      currentLawForGoogleSheet = "Personal Data Governance";
+    }
+
+    let response = await axios.get(
+      "/.netlify/functions/server/api/country-data"
+    );
+    let data = response.data.countryInfo;
+    let filterData = data
+      .filter(
+        (item) =>
+          item.country === currentCountry &&
+          item.lawCategory === currentLawForGoogleSheet
+      )
+      .map((item) => item);
+
+    this.setState(
+      {
+        googlesheetData: filterData,
+      },
+      () => this.launchModal()
+    );
+  }
+
   async componentDidMount() {
     window.addEventListener("resize", this.resizeScreen());
+    // this.getGSData();
   }
 
   render() {
     return (
       <Fragment>
-        {this.state.isModalShown && <Modal handleClose={this.handleClose} />}
+        {this.state.isModalShown && (
+          <Modal
+            handleClose={this.handleClose}
+            googleSheetInfo={this.state.googlesheetData}
+          />
+        )}
         <Map
           center={this.state.position}
           zoom={0}

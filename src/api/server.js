@@ -52,6 +52,7 @@ router.get("/api/country-data", async (req, res) => {
     continent: row.Continent,
     bodyText: row["Body Text"],
     lawCategory: row["Law Category"],
+    billsAndLaws: row["Bills and Laws"],
     description: row.Description,
   }));
 
