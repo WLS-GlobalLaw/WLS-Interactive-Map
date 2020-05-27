@@ -3,6 +3,7 @@ const express = require("express");
 const serverless = require("serverless-http");
 const bodyParser = require("body-parser");
 const { GoogleSpreadsheet } = require("google-spreadsheet");
+const encoding = require("encoding"); // this is added (but not used) because of a netlify bug not including this file into the CLI.  They will add in a future patch.
 
 const app = express();
 const router = express.Router();
@@ -13,8 +14,6 @@ const lawDgJson = require("./lawDgJson.json");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-console.log(process.env.REACT_APP_GOOGLE_PRIVATE_KEY);
 
 // API Calls
 router.get("/api/law-ds", (req, res) => {
@@ -39,10 +38,15 @@ router.get("/api/country-data", async (req, res) => {
   const doc = new GoogleSpreadsheet(
     "1e-VbcEbz8-7RifDaD5B7rFE_k6N4o-eziUIZQyEur2Q"
   );
-  // await doc.useServiceAccountAuth(creds);
+
   await doc.useServiceAccountAuth({
-    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    private_key: process.env.GOOGLE_PRIVATE_KEY,
+    client_email: process.env.REACT_APP_GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    // regex/replace is there because netlify env on build was turning all /n's to //n's
+    private_key:
+      process.env.REACT_APP_GOOGLE_PRIVATE_KEY.replace(
+        new RegExp("\\\\n", "g"),
+        "\n"
+      ) || process.env.GOOGLE_PRIVATE_KEY_LOCAL,
   });
   await doc.loadInfo();
   const sheet = doc.sheetsByIndex[0];
