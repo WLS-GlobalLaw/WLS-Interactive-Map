@@ -51,8 +51,8 @@ export default class MapContainer extends Component {
         currentLawSelected: lawClicked,
       },
       () => {
-        this.updateGeo();
         this.getApi(lawClicked);
+        this.updateGeo();
       }
     );
   }
@@ -60,27 +60,28 @@ export default class MapContainer extends Component {
   // this is called to render the GeoJson styling
   updateGeo() {
     this.setState({ isLawSelected: true });
+    this.lawGeoStyle();
   }
 
   // this will only select the countries that match the law being selected for coloring
   getGeoColor(law) {
-    return law === "law-ds"
-      ? "#e5cf33"
-      : law === "law-as"
-      ? "#e5cf33"
-      : law === "law-dg"
-      ? "#e5cf33"
-      : "none";
+    // return law === "law-ds"
+    //   ? "#e5cf33"
+    //   : law === "law-as"
+    //   ? "#e5cf33"
+    //   : law === "law-dg"
+    //   ? "#e5cf33"
+    //   : "none";
   }
 
   lawGeoStyle(e) {
     let currentLaw = this.state.currentLawSelected;
-
+    
     if (e) {
+      
       if (currentLaw === "law-ds") {
         return {
-          // fillColor: this.getGeoColor(e.properties["law-ds"]),
-          fillColor: "#e5cf33",
+          fillColor: "#1da1f2",
           weight: 2,
           opacity: 1,
           color: "none",
@@ -88,7 +89,7 @@ export default class MapContainer extends Component {
         };
       } else if (currentLaw === "law-as") {
         return {
-          fillColor: "#e5cf33",
+          fillColor: "#1b2c57",
           weight: 2,
           opacity: 1,
           color: "none",
@@ -130,7 +131,6 @@ export default class MapContainer extends Component {
     layer.on({
       mouseover: this.highlightFeature,
       mouseout: this.resetHighlight,
-      // click: this.launchModal,
       click: this.getGSDataAndLaunchModal,
     });
     // if (feature.properties["law-ds"]) {
@@ -220,7 +220,7 @@ export default class MapContainer extends Component {
 
   async componentDidMount() {
     window.addEventListener("resize", this.resizeScreen());
-    // this.getGSData();
+    
   }
 
   render() {
@@ -256,13 +256,7 @@ export default class MapContainer extends Component {
           {this.state.isLawSelected && this.state.geoData && (
             <GeoJSON
               data={this.state.geoData}
-              style={{
-                fillColor: "#e5cf33",
-                weight: 2,
-                opacity: 1,
-                color: "none",
-                fillOpacity: 0.7,
-              }}
+              style={this.lawGeoStyle}
               onEachFeature={this.onEachFeature}
               ref={this.geoRef}
               key={this.state.currentLawSelected}
