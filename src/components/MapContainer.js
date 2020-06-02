@@ -165,7 +165,7 @@ export default class MapContainer extends Component {
     } else if (innerWidth < 700) {
       this.setState({ zoomLevel: 1 });
     } else {
-      this.setState({ zoomLevel: 3 });
+      this.setState({ zoomLevel: 2 });
     }
   }
 
