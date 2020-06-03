@@ -17,20 +17,42 @@ div.button-container {
     width: 40rem;
     padding: 1.3rem 2rem;
     cursor: pointer;
-    background: $wls-brightblue;
     border: 0;
     border-radius: 1rem;
     color: white;
     font-weight: 700;
     transition: background-color 0.2s ease-in;
+  }
+
+  & .button:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
+
+  & .decentralized-systems {
+    background: $wls-brightblue;
 
     &:hover {
       background-color: #1da1f2bd;
     }
   }
 
-  & .button:not(:last-child) {
-    margin-bottom: 1.5rem;
+  & .autonomous-systems {
+    background: $wls-darkblue;
+    border: 1px solid #00000063;
+
+    &:hover {
+      background-color: #1b3b57;
+    }
+  }
+
+  & .data-governance {
+    background: $wls-yellow;
+
+    &:hover {
+      background-color: #e5cf33d1;
+    }
+
+    
   }
 
   & h3 {
