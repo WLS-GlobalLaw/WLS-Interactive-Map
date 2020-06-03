@@ -27,23 +27,22 @@ export default class MapContainer extends Component {
     this.geoRef = React.createRef();
     this.mapRef = React.createRef();
     this.updateGeo = this.updateGeo.bind(this);
-    this.getGeoColor = this.getGeoColor.bind(this);
     this.lawGeoStyle = this.lawGeoStyle.bind(this);
     this.highlightFeature = this.highlightFeature.bind(this);
     this.resetHighlight = this.resetHighlight.bind(this);
-    this.launchModal = this.launchModal.bind(this);
     this.onEachFeature = this.onEachFeature.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.resizeScreen = this.resizeScreen.bind(this);
     this.getApi = this.getApi.bind(this);
     this.getGSDataAndLaunchModal = this.getGSDataAndLaunchModal.bind(this);
+    this.launchModal = this.launchModal.bind(this);
   }
 
   changeCurrentLaw(e) {
     let lawClicked = e.target.id;
 
-    // first turn state of isLawSelected to false, so when updateGeo is called,
-    // is will switch to true and it will force rerender of the component
+    // first reset state, so when updateGeo is called,
+    // is will retrigger states and it will force rerender of the component
     this.setState(
       {
         isLawSelected: false,
@@ -61,17 +60,6 @@ export default class MapContainer extends Component {
   updateGeo() {
     this.setState({ isLawSelected: true });
     this.lawGeoStyle();
-  }
-
-  // this will only select the countries that match the law being selected for coloring
-  getGeoColor(law) {
-    // return law === "law-ds"
-    //   ? "#e5cf33"
-    //   : law === "law-as"
-    //   ? "#e5cf33"
-    //   : law === "law-dg"
-    //   ? "#e5cf33"
-    //   : "none";
   }
 
   lawGeoStyle(e) {
@@ -133,25 +121,6 @@ export default class MapContainer extends Component {
       mouseout: this.resetHighlight,
       click: this.getGSDataAndLaunchModal,
     });
-    // if (feature.properties["law-ds"]) {
-    //   layer.on({
-    //     mouseover: this.highlightFeature,
-    //     mouseout: this.resetHighlight,
-    //     click: this.launchModal,
-    //   });
-    // } else if (feature.properties["law-as"]) {
-    //   layer.on({
-    //     mouseover: this.highlightFeature,
-    //     mouseout: this.resetHighlight,
-    //     click: this.launchModal,
-    //   });
-    // } else if (feature.properties["law-dg"]) {
-    //   layer.on({
-    //     mouseover: this.highlightFeature,
-    //     mouseout: this.resetHighlight,
-    //     click: this.launchModal,
-    //   });
-    // }
   }
 
   handleClose() {
@@ -235,6 +204,7 @@ export default class MapContainer extends Component {
         <Map
           center={this.state.position}
           zoom={0}
+          doubleClickZoom={false}
           id="map"
           className="map"
           ref={this.mapRef}
@@ -251,6 +221,7 @@ export default class MapContainer extends Component {
             tileSize={512}
             zoomOffset={-1}
             accessToken={ACCESS_TOKEN}
+            
           />
 
           {this.state.isLawSelected && this.state.geoData && (
