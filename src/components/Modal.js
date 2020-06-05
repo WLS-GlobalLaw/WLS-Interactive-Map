@@ -20,19 +20,16 @@ export default class Modal extends Component {
             <div>
               <h3>Existing Bills, Laws, and Standards</h3>
               <table>
-                <thead>
+                <tbody>
                   
                   {this.props.googleSheetInfo.map((item, index) => (
-                // <p key={index}>
-                //   {item.billsAndLaws}: {item.description}
-                // </p>
                 <tr key={index} style={{border:"1px solid black"}}>
                   <td border={1}>{item.billsAndLaws}</td>
                   <td>{item.description}</td>
                 </tr>
               ))}
                   
-                </thead>
+                </tbody>
               </table>
               
             </div>

@@ -51,8 +51,14 @@ div.modal {
         width: 100%;
       }
 
+      & td {
+        padding: 10px;
+      }
+
       & p {
         white-space: pre-wrap;
+        border-bottom: 1px solid black;
+        padding-bottom: 7rem;
       }
 
       & h3 {
