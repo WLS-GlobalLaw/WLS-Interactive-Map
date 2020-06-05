@@ -24,15 +24,15 @@ div.modal {
     margin: auto;
     width: 80%;
     height: 80vh;
-    box-shadow: 0 0 40px #000000b3;
+    box-shadow: 0 0 40px #000000b3, inset 0rem 0rem 2rem .5rem rgba(54, 56, 57, 0.62);
     border-radius: 10px;
     text-align: center;
     font-size: 2.2rem;
-    border: 5px solid $wls-yellow;
+    border: 5px solid $wls-greyblack;
     text-align: left;
 
     & .inner-content {
-      border: 4px solid $wls-yellow;
+      border: 4px solid $wls-greyblack;
       padding: 20px;
       margin: 40px;
       overflow: auto;
@@ -41,6 +41,14 @@ div.modal {
 
       & h2 {
         font-size: 4.5rem;
+      }
+
+      & table, tr, td {
+        border: 1px solid black;
+      }
+
+      & table {
+        width: 100%;
       }
 
       & p {
@@ -62,10 +70,10 @@ div.modal {
     position: absolute;
     right: 0;
     top: 0;
-    color: $wls-brightblue;
+    color: $wls-darkblue;
     font-size: 28px;
     font-weight: bold;
-    border: 1px solid $wls-brightblue;
+    border: 1px solid $wls-darkblue;
     padding: 1px 5px;
     margin-right: 7px;
     margin-top: 10px;
@@ -76,7 +84,7 @@ div.modal {
   .close:hover,
   .close:focus {
     color: white;
-    background-color: $wls-brightblue;
+    background-color: $wls-darkblue;
     text-decoration: none;
     cursor: pointer;
   }
