@@ -64,9 +64,8 @@ export default class MapContainer extends Component {
 
   lawGeoStyle(e) {
     let currentLaw = this.state.currentLawSelected;
-    
+
     if (e) {
-      
       if (currentLaw === "law-ds") {
         return {
           fillColor: "#1da1f2",
@@ -157,18 +156,22 @@ export default class MapContainer extends Component {
 
   async getGSDataAndLaunchModal(e) {
     let currentLawForGoogleSheet;
+    let lawURLForGoogleSheet;
     let currentCountry = e.target.feature.properties.ADMIN;
 
     if (this.state.currentLawSelected === "law-ds") {
       currentLawForGoogleSheet = "Identity";
+      lawURLForGoogleSheet = "identity";
     } else if (this.state.currentLawSelected === "law-as") {
       currentLawForGoogleSheet = "Autonomous Systems";
+      lawURLForGoogleSheet = "autonomous-systems";
     } else if (this.state.currentLawSelected === "law-dg") {
       currentLawForGoogleSheet = "Personal Data Governance";
+      lawURLForGoogleSheet = "personal-data-governance";
     }
 
     let response = await axios.get(
-      "/.netlify/functions/server/api/country-data"
+      `/.netlify/functions/server/api/country-data/${lawURLForGoogleSheet}`
     );
     let data = response.data.countryInfo;
     let filterData = data
@@ -189,7 +192,6 @@ export default class MapContainer extends Component {
 
   async componentDidMount() {
     window.addEventListener("resize", this.resizeScreen());
-    
   }
 
   render() {
@@ -221,7 +223,6 @@ export default class MapContainer extends Component {
             tileSize={512}
             zoomOffset={-1}
             accessToken={ACCESS_TOKEN}
-            
           />
 
           {this.state.isLawSelected && this.state.geoData && (

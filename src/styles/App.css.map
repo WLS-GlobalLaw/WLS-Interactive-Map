@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,IAAI,CAAC;EACH,UAAU,EAAE,MAAM;CACnB",
+    "sources": [
+        "App.scss",
+        "shared-styles.scss"
+    ],
+    "names": [],
+    "file": "App.css"
+}

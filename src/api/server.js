@@ -12,16 +12,43 @@ const lawDsJson = require("./lawDsJson.json");
 const lawAsJson = require("./lawAsJson.json");
 const lawDgJson = require("./lawDgJson.json");
 
+const GSID = "1e-VbcEbz8-7RifDaD5B7rFE_k6N4o-eziUIZQyEur2Q";
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-console.log(process.env.GOOGLE_PRIVATE_KEY_LOCAL)
+async function getGoogleSheetInfo(googleSheetID) {
+  const doc = new GoogleSpreadsheet(googleSheetID);
+
+  await doc.useServiceAccountAuth({
+    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    //process.env.REACT_APP_GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    // regex/replace is there because netlify env on build was turning all /n's to //n's
+    private_key: process.env.GOOGLE_PRIVATE_KEY_LOCAL,
+    // ||
+    // process.env.REACT_APP_GOOGLE_PRIVATE_KEY.replace(
+    //   new RegExp("\\\\n", "g"),
+    //   "\n"
+    // ),
+  });
+  await doc.loadInfo();
+  const sheet = doc.sheetsByIndex[0];
+  const rows = await sheet.getRows();
+  const info = rows.map((row) => ({
+    country: row.Country,
+    continent: row.Continent,
+    bodyText: row["Body Text"],
+    lawCategory: row["Law Category"],
+    billsAndLaws: row["Bills and Laws"],
+    description: row.Description,
+  }));
+  return info;
+}
 
 // API Calls
-router.get("/api/law-ds", (req, res) => {
-  res.send({
-    lawDsJson,
-  });
+router.get("/api/law-ds", async (req, res) => {
+  let countryInfo = await getGoogleSheetInfo(GSID);
+  res.send({ lawDsJson, countryInfo });
 });
 
 router.get("/api/law-as", (req, res) => {
@@ -36,36 +63,34 @@ router.get("/api/law-dg", (req, res) => {
   });
 });
 
-router.get("/api/country-data", async (req, res) => {
-  const doc = new GoogleSpreadsheet(
-    "1e-VbcEbz8-7RifDaD5B7rFE_k6N4o-eziUIZQyEur2Q"
-  );
+router.get("/api/country-data/identity", async (req, res) => {
+  let countryInfo;
+  try {
+    countryInfo = await getGoogleSheetInfo(GSID);
+  } catch (e) {
+    console.error(e);
+  }
+  res.send({ countryInfo });
+});
 
-  await doc.useServiceAccountAuth({
-    client_email: process.env.REACT_APP_GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    // regex/replace is there because netlify env on build was turning all /n's to //n's
-    private_key:
-    process.env.GOOGLE_PRIVATE_KEY_LOCAL ||
-      process.env.REACT_APP_GOOGLE_PRIVATE_KEY.replace(
-        new RegExp("\\\\n", "g"),
-        "\n"
-      ) 
-  });
-  await doc.loadInfo();
-  const sheet = doc.sheetsByIndex[0];
-  const rows = await sheet.getRows();
-  const info = rows.map((row) => ({
-    country: row.Country,
-    continent: row.Continent,
-    bodyText: row["Body Text"],
-    lawCategory: row["Law Category"],
-    billsAndLaws: row["Bills and Laws"],
-    description: row.Description,
-  }));
+router.get("/api/country-data/autonomous-systems", async (req, res) => {
+  let countryInfo;
+  try {
+    countryInfo = await getGoogleSheetInfo(GSID);
+  } catch (e) {
+    console.error(e);
+  }
+  res.send({ countryInfo });
+});
 
-  res.send({
-    countryInfo: info,
-  });
+router.get("/api/country-data/personal-data-governance", async (req, res) => {
+  let countryInfo;
+  try {
+    countryInfo = await getGoogleSheetInfo(GSID);
+  } catch (e) {
+    console.error(e);
+  }
+  res.send({ countryInfo });
 });
 
 app.use("/.netlify/functions/server", router);

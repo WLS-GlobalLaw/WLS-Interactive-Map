@@ -1,0 +1,92 @@
+div.button-container {
+  position: relative;
+  z-index: 1000;
+  max-width: 35rem;
+  padding: 20px;
+  background-color: #55595a;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+  -webkit-box-shadow: 0.5rem 1rem 1.5rem rgba(0, 0, 0, 0.473), inset 0rem 0rem 0.4rem 0.5rem rgba(211, 211, 211, 0.911);
+          box-shadow: 0.5rem 1rem 1.5rem rgba(0, 0, 0, 0.473), inset 0rem 0rem 0.4rem 0.5rem rgba(211, 211, 211, 0.911);
+}
+
+div.button-container .button {
+  display: block;
+  font-size: 1.5rem;
+  width: 100%;
+  padding: 1.3rem 2rem;
+  cursor: pointer;
+  border: 0;
+  border-radius: 1rem;
+  color: white;
+  font-weight: 700;
+  -webkit-transition: background-color 0.2s ease-in;
+  transition: background-color 0.2s ease-in;
+}
+
+div.button-container .button:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
+div.button-container .decentralized-systems {
+  background: #1da1f2;
+}
+
+div.button-container .decentralized-systems:hover {
+  background-color: #1da1f2bd;
+}
+
+div.button-container .autonomous-systems {
+  background: #1b2c57;
+  border: 1px solid #00000063;
+}
+
+div.button-container .autonomous-systems:hover {
+  background-color: #1b3b57;
+}
+
+div.button-container .data-governance {
+  background: #e5cf33;
+}
+
+div.button-container .data-governance:hover {
+  background-color: #e5cf33d1;
+}
+
+div.button-container h3 {
+  font-size: 2rem;
+  color: white;
+  margin-top: 0;
+}
+
+@media (min-width: 320px) and (max-width: 640px) {
+  div.button-container {
+    min-width: 100vw;
+    margin: 0;
+    padding: 0.5rem;
+    border-width: 1px;
+    -webkit-box-shadow: inset 0rem 0rem 0.1rem 0.2rem rgba(211, 211, 211, 0.911);
+            box-shadow: inset 0rem 0rem 0.1rem 0.2rem rgba(211, 211, 211, 0.911);
+  }
+  div.button-container .button {
+    display: block;
+    font-size: 1.5rem;
+    width: 100%;
+    padding: 1.3rem 2rem;
+  }
+  div.button-container .button:not(:last-child) {
+    margin-bottom: 0.7rem;
+  }
+  div.button-container h3 {
+    font-size: 1.7rem;
+    padding: 0.2rem 0.3rem 0 0.3rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  div.button-container {
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+/*# sourceMappingURL=Buttons.css.map */

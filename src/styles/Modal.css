@@ -1,0 +1,147 @@
+div.modal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  /* Stay in place */
+  z-index: 1001;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+  /* The Close Button */
+}
+
+div.modal .modal-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #fefefe;
+  margin: auto;
+  width: 80%;
+  height: 80vh;
+  -webkit-box-shadow: 0 0 40px #000000b3, inset 0rem 0rem 2rem 0.5rem rgba(54, 56, 57, 0.62);
+          box-shadow: 0 0 40px #000000b3, inset 0rem 0rem 2rem 0.5rem rgba(54, 56, 57, 0.62);
+  border-radius: 10px;
+  text-align: center;
+  font-size: 2.2rem;
+  border: 5px solid #363839;
+  text-align: left;
+}
+
+div.modal .modal-content .inner-content {
+  border: 4px solid #363839;
+  padding: 20px;
+  margin: 40px;
+  overflow: auto;
+  white-space: pre-wrap;
+  height: 80rem;
+}
+
+div.modal .modal-content .inner-content h2 {
+  font-size: 4.5rem;
+}
+
+div.modal .modal-content .inner-content table, div.modal .modal-content .inner-content tr, div.modal .modal-content .inner-content td {
+  border: 1px solid black;
+}
+
+div.modal .modal-content .inner-content table {
+  width: 100%;
+}
+
+div.modal .modal-content .inner-content td {
+  padding: 10px;
+}
+
+div.modal .modal-content .inner-content p {
+  white-space: pre-wrap;
+  border-bottom: 1px solid black;
+  padding-bottom: 7rem;
+}
+
+div.modal .modal-content .inner-content h3 {
+  margin-top: 5rem;
+  font-size: 3.5rem;
+}
+
+div.modal .modal-content .inner-content h2,
+div.modal .modal-content .inner-content h3 {
+  text-align: center;
+}
+
+div.modal .close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #1b2c57;
+  font-size: 28px;
+  font-weight: bold;
+  border: 1px solid #1b2c57;
+  padding: 1px 5px;
+  margin-right: 7px;
+  margin-top: 10px;
+  border-radius: 10px;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+div.modal .close:hover,
+div.modal .close:focus {
+  color: white;
+  background-color: #1b2c57;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 320px) and (max-width: 640px) {
+  div.modal .modal-content {
+    height: 90vh;
+    font-size: 1.6rem;
+  }
+  div.modal .modal-content .inner-content {
+    margin: 0;
+    border: 0;
+  }
+  div.modal .modal-content .inner-content h2 {
+    font-size: 2.5rem;
+  }
+  div.modal .modal-content .inner-content p {
+    white-space: pre-wrap;
+  }
+  div.modal .modal-content .inner-content h3 {
+    margin-top: 5rem;
+    font-size: 2rem;
+  }
+  div.modal .close {
+    background-color: #1da1f2;
+    color: white;
+  }
+}
+/*# sourceMappingURL=Modal.css.map */
