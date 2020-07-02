@@ -21,6 +21,7 @@ export default class MapContainer extends Component {
       zoomLevel: 1,
       geoData: null,
       googlesheetData: [],
+      googlesheetCountryBodyText: [],
     };
 
     this.changeCurrentLaw = this.changeCurrentLaw.bind(this);
@@ -160,13 +161,13 @@ export default class MapContainer extends Component {
     let currentCountry = e.target.feature.properties.ADMIN;
 
     if (this.state.currentLawSelected === "law-ds") {
-      currentLawForGoogleSheet = "Identity";
+      // currentLawForGoogleSheet = "Identity";
       lawURLForGoogleSheet = "identity";
     } else if (this.state.currentLawSelected === "law-as") {
-      currentLawForGoogleSheet = "Autonomous Systems";
+      // currentLawForGoogleSheet = "Autonomous Systems";
       lawURLForGoogleSheet = "autonomous-systems";
     } else if (this.state.currentLawSelected === "law-dg") {
-      currentLawForGoogleSheet = "Personal Data Governance";
+      // currentLawForGoogleSheet = "Personal Data Governance";
       lawURLForGoogleSheet = "personal-data-governance";
     }
 
@@ -174,17 +175,27 @@ export default class MapContainer extends Component {
       `/.netlify/functions/server/api/country-data/${lawURLForGoogleSheet}`
     );
     let data = response.data.countryInfo;
-    let filterData = data
+    let filteredData = data
       .filter(
-        (item) =>
-          item.country === currentCountry &&
-          item.lawCategory === currentLawForGoogleSheet
+        (item) => item.country === currentCountry
+        // &&
+        // item.lawCategory === currentLawForGoogleSheet
       )
+      .map((item) => item);
+
+    let countryBodyText = await axios.get(
+      `/.netlify/functions/server/api/country-data/country-info`
+    );
+
+    let bodyTextInfo = countryBodyText.data.countryBodyText;
+    let filteredBodyTextInfo = bodyTextInfo
+      .filter((item) => item.country === currentCountry)
       .map((item) => item);
 
     this.setState(
       {
-        googlesheetData: filterData,
+        googlesheetData: filteredData,
+        googlesheetCountryBodyText: filteredBodyTextInfo,
       },
       () => this.launchModal()
     );
@@ -201,6 +212,7 @@ export default class MapContainer extends Component {
           <Modal
             handleClose={this.handleClose}
             googleSheetInfo={this.state.googlesheetData}
+            googleSheetCountryBodyText={this.state.googlesheetCountryBodyText}
           />
         )}
         <Map

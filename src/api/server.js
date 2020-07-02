@@ -12,8 +12,6 @@ const lawDsJson = require("./lawDsJson.json");
 const lawAsJson = require("./lawAsJson.json");
 const lawDgJson = require("./lawDgJson.json");
 
-const GSID = "1e-VbcEbz8-7RifDaD5B7rFE_k6N4o-eziUIZQyEur2Q";
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -36,19 +34,23 @@ async function getGoogleSheetInfo(googleSheetID) {
   const rows = await sheet.getRows();
   const info = rows.map((row) => ({
     country: row.Country,
-    continent: row.Continent,
+    worldRegion: row["World Region"],
+    typeOfLegislation: row["Type of Legislation"],
+    lawSubCategory: row["Law Sub Category/In Text Title"],
+    keyOrganizations: row["Key Organization(s)"],
+    titleOfLaw: row["Title of Law"],
+    description: row["(# of characters = 300)  Description"],
+    webLink: row["Web Link"],
     bodyText: row["Body Text"],
-    lawCategory: row["Law Category"],
-    billsAndLaws: row["Bills and Laws"],
-    description: row.Description,
   }));
   return info;
 }
 
 // API Calls
-router.get("/api/law-ds", async (req, res) => {
-  let countryInfo = await getGoogleSheetInfo(GSID);
-  res.send({ lawDsJson, countryInfo });
+router.get("/api/law-ds", (req, res) => {
+  res.send({
+    lawDsJson,
+  });
 });
 
 router.get("/api/law-as", (req, res) => {
@@ -66,7 +68,7 @@ router.get("/api/law-dg", (req, res) => {
 router.get("/api/country-data/identity", async (req, res) => {
   let countryInfo;
   try {
-    countryInfo = await getGoogleSheetInfo(GSID);
+    countryInfo = await getGoogleSheetInfo(process.env.GOOGLE_SHEET_ID_LAW_DS);
   } catch (e) {
     console.error(e);
   }
@@ -76,7 +78,7 @@ router.get("/api/country-data/identity", async (req, res) => {
 router.get("/api/country-data/autonomous-systems", async (req, res) => {
   let countryInfo;
   try {
-    countryInfo = await getGoogleSheetInfo(GSID);
+    countryInfo = await getGoogleSheetInfo(process.env.GOOGLE_SHEET_ID_LAW_AS);
   } catch (e) {
     console.error(e);
   }
@@ -86,11 +88,23 @@ router.get("/api/country-data/autonomous-systems", async (req, res) => {
 router.get("/api/country-data/personal-data-governance", async (req, res) => {
   let countryInfo;
   try {
-    countryInfo = await getGoogleSheetInfo(GSID);
+    countryInfo = await getGoogleSheetInfo(process.env.GOOGLE_SHEET_ID_LAW_DG);
   } catch (e) {
     console.error(e);
   }
   res.send({ countryInfo });
+});
+
+router.get("/api/country-data/country-info", async (req, res) => {
+  let countryBodyText;
+  try {
+    countryBodyText = await getGoogleSheetInfo(
+      process.env.GOOGLE_SHEET_ID_BODY_TEXT
+    );
+  } catch (e) {
+    console.error(e);
+  }
+  res.send({ countryBodyText });
 });
 
 app.use("/.netlify/functions/server", router);

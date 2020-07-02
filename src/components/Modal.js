@@ -14,24 +14,22 @@ export default class Modal extends Component {
               {this.props.googleSheetInfo[0].country}
             </h2>
             <p className="modal-text">
-              {this.props.googleSheetInfo[0].bodyText}{" "}
+              {this.props.googleSheetCountryBodyText[0].bodyText}
             </p>
 
             <div>
               <h3>Existing Bills, Laws, and Standards</h3>
               <table>
                 <tbody>
-                  
                   {this.props.googleSheetInfo.map((item, index) => (
-                <tr key={index} style={{border:"1px solid black"}}>
-                  <td border={1}>{item.billsAndLaws}</td>
-                  <td>{item.description}</td>
-                </tr>
-              ))}
-                  
+                    <tr key={index} style={{ border: "1px solid black" }}>
+                      <td border={1}>{item.typeOfLegislation}</td>
+                      <td>{item.titleOfLaw}</td>
+                      <td>{item.description}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
-              
             </div>
           </div>
         </div>
