@@ -19,13 +19,10 @@ async function getGoogleSheetInfo(googleSheetID) {
   const doc = new GoogleSpreadsheet(googleSheetID);
 
   await doc.useServiceAccountAuth({
-    client_email:
-      // process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-      process.env.REACT_APP_GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    client_email: process.env.REACT_APP_GOOGLE_SERVICE_ACCOUNT_EMAIL,
     // regex/replace is there because netlify env on build was turning all /n's to //n's
     private_key:
       // process.env.GOOGLE_PRIVATE_KEY_LOCAL,
-      // ||
       process.env.REACT_APP_GOOGLE_PRIVATE_KEY.replace(
         new RegExp("\\\\n", "g"),
         "\n"

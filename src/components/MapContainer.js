@@ -161,13 +161,13 @@ export default class MapContainer extends Component {
     let currentCountry = e.target.feature.properties.ADMIN;
 
     if (this.state.currentLawSelected === "law-ds") {
-      // currentLawForGoogleSheet = "Identity";
+      currentLawForGoogleSheet = "Identity";
       lawURLForGoogleSheet = "identity";
     } else if (this.state.currentLawSelected === "law-as") {
-      // currentLawForGoogleSheet = "Autonomous Systems";
+      currentLawForGoogleSheet = "Autonomous Systems";
       lawURLForGoogleSheet = "autonomous-systems";
     } else if (this.state.currentLawSelected === "law-dg") {
-      // currentLawForGoogleSheet = "Personal Data Governance";
+      currentLawForGoogleSheet = "Personal Data Governance";
       lawURLForGoogleSheet = "personal-data-governance";
     }
 
@@ -176,11 +176,7 @@ export default class MapContainer extends Component {
     );
     let data = response.data.countryInfo;
     let filteredData = data
-      .filter(
-        (item) => item.country === currentCountry
-        // &&
-        // item.lawCategory === currentLawForGoogleSheet
-      )
+      .filter((item) => item.country === currentCountry)
       .map((item) => item);
 
     let countryBodyText = await axios.get(
@@ -189,7 +185,11 @@ export default class MapContainer extends Component {
 
     let bodyTextInfo = countryBodyText.data.countryBodyText;
     let filteredBodyTextInfo = bodyTextInfo
-      .filter((item) => item.country === currentCountry)
+      .filter(
+        (item) =>
+          item.country === currentCountry &&
+          item.categoryOfLegislation === currentLawForGoogleSheet
+      )
       .map((item) => item);
 
     this.setState(
