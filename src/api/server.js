@@ -19,14 +19,13 @@ async function getGoogleSheetInfo(googleSheetID) {
   const doc = new GoogleSpreadsheet(googleSheetID);
 
   await doc.useServiceAccountAuth({
-    client_email: process.env.REACT_APP_GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
     // regex/replace is there because netlify env on build was turning all /n's to //n's
-    private_key:
-      // process.env.GOOGLE_PRIVATE_KEY_LOCAL,
-      process.env.REACT_APP_GOOGLE_PRIVATE_KEY.replace(
-        new RegExp("\\\\n", "g"),
-        "\n"
-      ),
+    private_key: process.env.GOOGLE_PRIVATE_KEY_LOCAL,
+    // process.env.REACT_APP_GOOGLE_PRIVATE_KEY.replace(
+    //   new RegExp("\\\\n", "g"),
+    //   "\n"
+    // ),
   });
   await doc.loadInfo();
   const sheet = doc.sheetsByIndex[0];
@@ -68,9 +67,7 @@ router.get("/api/law-dg", (req, res) => {
 router.get("/api/country-data/identity", async (req, res) => {
   let countryInfo;
   try {
-    countryInfo = await getGoogleSheetInfo(
-      process.env.REACT_APP_GOOGLE_SHEET_ID_LAW_DS
-    );
+    countryInfo = await getGoogleSheetInfo(process.env.GOOGLE_SHEET_ID_LAW_DS);
   } catch (e) {
     console.error(e);
   }
@@ -80,9 +77,7 @@ router.get("/api/country-data/identity", async (req, res) => {
 router.get("/api/country-data/autonomous-systems", async (req, res) => {
   let countryInfo;
   try {
-    countryInfo = await getGoogleSheetInfo(
-      process.env.REACT_APP_GOOGLE_SHEET_ID_LAW_AS
-    );
+    countryInfo = await getGoogleSheetInfo(process.env.GOOGLE_SHEET_ID_LAW_AS);
   } catch (e) {
     console.error(e);
   }
@@ -92,9 +87,7 @@ router.get("/api/country-data/autonomous-systems", async (req, res) => {
 router.get("/api/country-data/personal-data-governance", async (req, res) => {
   let countryInfo;
   try {
-    countryInfo = await getGoogleSheetInfo(
-      process.env.REACT_APP_GOOGLE_SHEET_ID_LAW_DG
-    );
+    countryInfo = await getGoogleSheetInfo(process.env.GOOGLE_SHEET_ID_LAW_DG);
   } catch (e) {
     console.error(e);
   }
@@ -105,7 +98,7 @@ router.get("/api/country-data/country-info", async (req, res) => {
   let countryBodyText;
   try {
     countryBodyText = await getGoogleSheetInfo(
-      process.env.REACT_APP_GOOGLE_SHEET_ID_BODY_TEXT
+      process.env.GOOGLE_SHEET_ID_BODY_TEXT
     );
   } catch (e) {
     console.error(e);

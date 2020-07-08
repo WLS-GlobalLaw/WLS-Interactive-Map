@@ -2,6 +2,18 @@ import React, { Component } from "react";
 import "../styles/Modal.scss";
 
 export default class Modal extends Component {
+  constructor(props) {
+    super(props);
+    this.checkIfBodyTextExists = this.checkIfBodyTextExists.bind(this);
+  }
+
+  checkIfBodyTextExists() {
+    if (this.props.googleSheetCountryBodyText.length !== 0) {
+      return this.props.googleSheetCountryBodyText[0].bodyText;
+    } else {
+      return "TBD";
+    }
+  }
   render() {
     return (
       <div id="myModal" className="modal">
@@ -13,10 +25,8 @@ export default class Modal extends Component {
             <h2 className="content-title">
               {this.props.googleSheetInfo[0].country}
             </h2>
-            <p className="modal-text">
-              {this.props.googleSheetCountryBodyText[0].bodyText}
-            </p>
-
+            <p className="modal-text">{this.checkIfBodyTextExists()}</p>
+            {console.log(this.checkIfBodyTextExists())}
             <div>
               <h3>Existing Bills, Laws, and Standards</h3>
               <table>
