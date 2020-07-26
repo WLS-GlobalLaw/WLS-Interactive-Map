@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Map, TileLayer, GeoJSON } from "react-leaflet";
+import { Map, TileLayer, GeoJSON, Marker } from "react-leaflet";
 import "../styles/MapContainer.scss";
 
 import Buttons from "./Buttons";
@@ -237,7 +237,7 @@ export default class MapContainer extends Component {
             accessToken={ACCESS_TOKEN}
           />
 
-          {this.state.isLawSelected && this.state.geoData && (
+          {/*this.state.isLawSelected && this.state.geoData && (
             <GeoJSON
               data={this.state.geoData}
               style={this.lawGeoStyle}
@@ -245,7 +245,9 @@ export default class MapContainer extends Component {
               ref={this.geoRef}
               key={this.state.currentLawSelected}
             />
-          )}
+          ) */}
+
+          <Marker position={[56.130366, -106.346771]} />
         </Map>
       </Fragment>
     );
