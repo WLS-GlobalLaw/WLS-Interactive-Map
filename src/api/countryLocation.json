@@ -395,6 +395,708 @@
       "shortName": "ET",
       "lat": "9.145",
       "long": "40.489673"
+    },
+    {
+      "country": "Finland",
+      "shortName": "FI",
+      "lat": "61.92411",
+      "long": "25.748151"
+    },
+    {
+      "country": "Fiji",
+      "shortName": "FJ",
+      "lat": "-16.578193",
+      "long": "179.414413"
+    },
+    {
+      "country": "Falkland Islands [Islas Malvinas]",
+      "shortName": "FK",
+      "lat": "-51.796253",
+      "long": "-59.523613"
+    },
+    {
+      "country": "Micronesia",
+      "shortName": "FM",
+      "lat": "7.425554",
+      "long": "150.550812"
+    },
+    {
+      "country": "Faroe Islands",
+      "shortName": "FO",
+      "lat": "61.892635",
+      "long": "-6.911806"
+    },
+    {
+      "country": "France",
+      "shortName": "FR",
+      "lat": "46.227638",
+      "long": "2.213749"
+    },
+    {
+      "country": "Gabon",
+      "shortName": "GA",
+      "lat": "-0.803689",
+      "long": "11.609444"
+    },
+    {
+      "country": "United Kingdom",
+      "shortName": "GB",
+      "lat": "55.378051",
+      "long": "-3.435973"
+    },
+    {
+      "country": "Grenada",
+      "shortName": "GD",
+      "lat": "12.262776",
+      "long": "-61.604171"
+    },
+    {
+      "country": "Georgia",
+      "shortName": "GE",
+      "lat": "42.315407",
+      "long": "43.356892"
+    },
+    {
+      "country": "French Guiana",
+      "shortName": "GF",
+      "lat": "3.933889",
+      "long": "-53.125782"
+    },
+    {
+      "country": "Guernsey",
+      "shortName": "GG",
+      "lat": "49.465691",
+      "long": "-2.585278"
+    },
+    {
+      "country": "Ghana",
+      "shortName": "GH",
+      "lat": "7.946527",
+      "long": "-1.023194"
+    },
+    {
+      "country": "Gibraltar",
+      "shortName": "GI",
+      "lat": "36.137741",
+      "long": "-5.345374"
+    },
+    {
+      "country": "Greenland",
+      "shortName": "GL",
+      "lat": "71.706936",
+      "long": "-42.604303"
+    },
+    {
+      "country": "Gambia",
+      "shortName": "GM",
+      "lat": "13.443182",
+      "long": "-15.310139"
+    },
+    {
+      "country": "Guinea",
+      "shortName": "GN",
+      "lat": "9.945587",
+      "long": "-9.696645"
+    },
+    {
+      "country": "Guadeloupe",
+      "shortName": "GP",
+      "lat": "16.995971",
+      "long": "-62.067641"
+    },
+    {
+      "country": "Equatorial Guinea",
+      "shortName": "GQ",
+      "lat": "1.650801",
+      "long": "10.267895"
+    },
+    {
+      "country": "Greece",
+      "shortName": "GR",
+      "lat": "39.074208",
+      "long": "21.824312"
+    },
+    {
+      "country": "South Georgia and the South Sandwich Islands",
+      "shortName": "GS",
+      "lat": "-54.429579",
+      "long": "-36.587909"
+    },
+    {
+      "country": "Guatemala",
+      "shortName": "GT",
+      "lat": "15.783471",
+      "long": "-90.230759"
+    },
+    {
+      "country": "Guam",
+      "shortName": "GU",
+      "lat": "13.444304",
+      "long": "144.793731"
+    },
+    {
+      "country": "Guinea-Bissau",
+      "shortName": "GW",
+      "lat": "11.803749",
+      "long": "-15.180413"
+    },
+    {
+      "country": "Guyana",
+      "shortName": "GY",
+      "lat": "4.860416",
+      "long": "-58.93018"
+    },
+    {
+      "country": "Gaza Strip",
+      "shortName": "GZ",
+      "lat": "31.354676",
+      "long": "34.308825"
+    },
+    {
+      "country": "Hong Kong",
+      "shortName": "HK",
+      "lat": "22.396428",
+      "long": "114.109497"
+    },
+    {
+      "country": "Heard Island and McDonald Islands",
+      "shortName": "HM",
+      "lat": "-53.08181",
+      "long": "73.504158"
+    },
+    {
+      "country": "Honduras",
+      "shortName": "HN",
+      "lat": "15.199999",
+      "long": "-86.241905"
+    },
+    {
+      "country": "Croatia",
+      "shortName": "HR",
+      "lat": "45.1",
+      "long": "15.2"
+    },
+    {
+      "country": "Haiti",
+      "shortName": "HT",
+      "lat": "18.971187",
+      "long": "-72.285215"
+    },
+    {
+      "country": "Hungary",
+      "shortName": "HU",
+      "lat": "47.162494",
+      "long": "19.503304"
+    },
+    {
+      "country": "Indonesia",
+      "shortName": "ID",
+      "lat": "-0.789275",
+      "long": "113.921327"
+    },
+    {
+      "country": "Ireland",
+      "shortName": "IE",
+      "lat": "53.41291",
+      "long": "-8.24389"
+    },
+    {
+      "country": "Israel",
+      "shortName": "IL",
+      "lat": "31.046051",
+      "long": "34.851612"
+    },
+    {
+      "country": "Isle of Man",
+      "shortName": "IM",
+      "lat": "54.236107",
+      "long": "-4.548056"
+    },
+    {
+      "country": "India",
+      "shortName": "IN",
+      "lat": "20.593684",
+      "long": "78.96288"
+    },
+    {
+      "country": "British Indian Ocean Territory",
+      "shortName": "IO",
+      "lat": "-6.343194",
+      "long": "71.876519"
+    },
+    {
+      "country": "Iraq",
+      "shortName": "IQ",
+      "lat": "33.223191",
+      "long": "43.679291"
+    },
+    {
+      "country": "Iran",
+      "shortName": "IR",
+      "lat": "32.427908",
+      "long": "53.688046"
+    },
+    {
+      "country": "Iceland",
+      "shortName": "IS",
+      "lat": "64.963051",
+      "long": "-19.020835"
+    },
+    {
+      "country": "Italy",
+      "shortName": "IT",
+      "lat": "41.87194",
+      "long": "12.56738"
+    },
+    {
+      "country": "Jersey",
+      "shortName": "JE",
+      "lat": "49.214439",
+      "long": "-2.13125"
+    },
+    {
+      "country": "Jamaica",
+      "shortName": "JM",
+      "lat": "18.109581",
+      "long": "-77.297508"
+    },
+    {
+      "country": "Jordan",
+      "shortName": "JO",
+      "lat": "30.585164",
+      "long": "36.238414"
+    },
+    {
+      "country": "Japan",
+      "shortName": "JP",
+      "lat": "36.204824",
+      "long": "138.252924"
+    },
+    {
+      "country": "Kenya",
+      "shortName": "KE",
+      "lat": "-0.023559",
+      "long": "37.906193"
+    },
+    {
+      "country": "Kyrgyzstan",
+      "shortName": "KG",
+      "lat": "41.20438",
+      "long": "74.766098"
+    },
+    {
+      "country": "Cambodia",
+      "shortName": "KH",
+      "lat": "12.565679",
+      "long": "104.990963"
+    },
+    {
+      "country": "Kiribati",
+      "shortName": "KI",
+      "lat": "-3.370417",
+      "long": "-168.734039"
+    },
+    {
+      "country": "Comoros",
+      "shortName": "KM",
+      "lat": "-11.875001",
+      "long": "43.872219"
+    },
+    {
+      "country": "Saint Kitts and Nevis",
+      "shortName": "KN",
+      "lat": "17.357822",
+      "long": "-62.782998"
+    },
+    {
+      "country": "North Korea",
+      "shortName": "KP",
+      "lat": "40.339852",
+      "long": "127.510093"
+    },
+    {
+      "country": "South Korea",
+      "shortName": "KR",
+      "lat": "35.907757",
+      "long": "127.766922"
+    },
+    {
+      "country": "Kuwait",
+      "shortName": "KW",
+      "lat": "29.31166",
+      "long": "47.481766"
+    },
+    {
+      "country": "Cayman Islands",
+      "shortName": "KY",
+      "lat": "19.513469",
+      "long": "-80.566956"
+    },
+    {
+      "country": "Kazakhstan",
+      "shortName": "KZ",
+      "lat": "48.019573",
+      "long": "66.923684"
+    },
+    {
+      "country": "Laos",
+      "shortName": "LA",
+      "lat": "19.85627",
+      "long": "102.495496"
+    },
+    {
+      "country": "Lebanon",
+      "shortName": "LB",
+      "lat": "33.854721",
+      "long": "35.862285"
+    },
+    {
+      "country": "Saint Lucia",
+      "shortName": "LC",
+      "lat": "13.909444",
+      "long": "-60.978893"
+    },
+    {
+      "country": "Liechtenstein",
+      "shortName": "LI",
+      "lat": "47.166",
+      "long": "9.555373"
+    },
+    {
+      "country": "Sri Lanka",
+      "shortName": "LK",
+      "lat": "7.873054",
+      "long": "80.771797"
+    },
+    {
+      "country": "Liberia",
+      "shortName": "LR",
+      "lat": "6.428055",
+      "long": "-9.429499"
+    },
+    {
+      "country": "Lesotho",
+      "shortName": "LS",
+      "lat": "-29.609988",
+      "long": "28.233608"
+    },
+    {
+      "country": "Lithuania",
+      "shortName": "LT",
+      "lat": "55.169438",
+      "long": "23.881275"
+    },
+    {
+      "country": "Luxembourg",
+      "shortName": "LU",
+      "lat": "49.815273",
+      "long": "6.129583"
+    },
+    {
+      "country": "Latvia",
+      "shortName": "LV",
+      "lat": "56.879635",
+      "long": "24.603189"
+    },
+    {
+      "country": "Libya",
+      "shortName": "LY",
+      "lat": "26.3351",
+      "long": "17.228331"
+    },
+    {
+      "country": "Morocco",
+      "shortName": "MA",
+      "lat": "31.791702",
+      "long": "-7.09262"
+    },
+    {
+      "country": "Monaco",
+      "shortName": "MC",
+      "lat": "43.750298",
+      "long": "7.412841"
+    },
+    {
+      "country": "Moldova",
+      "shortName": "MD",
+      "lat": "47.411631",
+      "long": "28.369885"
+    },
+    {
+      "country": "Montenegro",
+      "shortName": "ME",
+      "lat": "42.708678",
+      "long": "19.37439"
+    },
+    {
+      "country": "Madagascar",
+      "shortName": "MG",
+      "lat": "-18.766947",
+      "long": "46.869107"
+    },
+    {
+      "country": "Marshall Islands",
+      "shortName": "MH",
+      "lat": "7.131474",
+      "long": "171.184478"
+    },
+    {
+      "country": "Macedonia [FYROM]",
+      "shortName": "MK",
+      "lat": "41.608635",
+      "long": "21.745275"
+    },
+    {
+      "country": "Mali",
+      "shortName": "ML",
+      "lat": "17.570692",
+      "long": "-3.996166"
+    },
+    {
+      "country": "Myanmar [Burma]",
+      "shortName": "MM",
+      "lat": "21.913965",
+      "long": "95.956223"
+    },
+    {
+      "country": "Mongolia",
+      "shortName": "MN",
+      "lat": "46.862496",
+      "long": "103.846656"
+    },
+    {
+      "country": "Macau",
+      "shortName": "MO",
+      "lat": "22.198745",
+      "long": "113.543873"
+    },
+    {
+      "country": "Northern Mariana Islands",
+      "shortName": "MP",
+      "lat": "17.33083",
+      "long": "145.38469"
+    },
+    {
+      "country": "Martinique",
+      "shortName": "MQ",
+      "lat": "14.641528",
+      "long": "-61.024174"
+    },
+    {
+      "country": "Mauritania",
+      "shortName": "MR",
+      "lat": "21.00789",
+      "long": "-10.940835"
+    },
+    {
+      "country": "Montserrat",
+      "shortName": "MS",
+      "lat": "16.742498",
+      "long": "-62.187366"
+    },
+    {
+      "country": "Malta",
+      "shortName": "MT",
+      "lat": "35.937496",
+      "long": "14.375416"
+    },
+    {
+      "country": "Mauritius",
+      "shortName": "MU",
+      "lat": "-20.348404",
+      "long": "57.552152"
+    },
+    {
+      "country": "Maldives",
+      "shortName": "MV",
+      "lat": "3.202778",
+      "long": "73.22068"
+    },
+    {
+      "country": "Malawi",
+      "shortName": "MW",
+      "lat": "-13.254308",
+      "long": "34.301525"
+    },
+    {
+      "country": "Mexico",
+      "shortName": "MX",
+      "lat": "23.634501",
+      "long": "-102.552784"
+    },
+    {
+      "country": "Malaysia",
+      "shortName": "MY",
+      "lat": "4.210484",
+      "long": "101.975766"
+    },
+    {
+      "country": "Mozambique",
+      "shortName": "MZ",
+      "lat": "-18.665695",
+      "long": "35.529562"
+    },
+    {
+      "country": "Namibia",
+      "shortName": "NA",
+      "lat": "-22.95764",
+      "long": "18.49041"
+    },
+    {
+      "country": "New Caledonia",
+      "shortName": "NC",
+      "lat": "-20.904305",
+      "long": "165.618042"
+    },
+    {
+      "country": "Niger",
+      "shortName": "NE",
+      "lat": "17.607789",
+      "long": "8.081666"
+    },
+    {
+      "country": "Norfolk Island",
+      "shortName": "NF",
+      "lat": "-29.040835",
+      "long": "167.954712"
+    },
+    {
+      "country": "Nigeria",
+      "shortName": "NG",
+      "lat": "9.081999",
+      "long": "8.675277"
+    },
+    {
+      "country": "Nicaragua",
+      "shortName": "NI",
+      "lat": "12.865416",
+      "long": "-85.207229"
+    },
+    {
+      "country": "Netherlands",
+      "shortName": "NL",
+      "lat": "52.132633",
+      "long": "5.291266"
+    },
+    {
+      "country": "Norway",
+      "shortName": "NO",
+      "lat": "60.472024",
+      "long": "8.468946"
+    },
+    {
+      "country": "Nepal",
+      "shortName": "NP",
+      "lat": "28.394857",
+      "long": "84.124008"
+    },
+    {
+      "country": "Nauru",
+      "shortName": "NR",
+      "lat": "-0.522778",
+      "long": "166.931503"
+    },
+    {
+      "country": "Niue",
+      "shortName": "NU",
+      "lat": "-19.054445",
+      "long": "-169.867233"
+    },
+    {
+      "country": "New Zealand",
+      "shortName": "NZ",
+      "lat": "-40.900557",
+      "long": "174.885971"
+    },
+    {
+      "country": "Oman",
+      "shortName": "OM",
+      "lat": "21.512583",
+      "long": "55.923255"
+    },
+    {
+      "country": "",
+      "shortName": "",
+      "lat": "",
+      "long": ""
+    },
+    {
+      "country": "",
+      "shortName": "",
+      "lat": "",
+      "long": ""
+    },
+    {
+      "country": "",
+      "shortName": "",
+      "lat": "",
+      "long": ""
+    },
+    {
+      "country": "",
+      "shortName": "",
+      "lat": "",
+      "long": ""
+    },
+    {
+      "country": "",
+      "shortName": "",
+      "lat": "",
+      "long": ""
+    },
+    {
+      "country": "",
+      "shortName": "",
+      "lat": "",
+      "long": ""
+    },
+    {
+      "country": "",
+      "shortName": "",
+      "lat": "",
+      "long": ""
+    },
+    {
+      "country": "",
+      "shortName": "",
+      "lat": "",
+      "long": ""
+    },
+    {
+      "country": "",
+      "shortName": "",
+      "lat": "",
+      "long": ""
+    },
+    {
+      "country": "",
+      "shortName": "",
+      "lat": "",
+      "long": ""
+    },
+    {
+      "country": "",
+      "shortName": "",
+      "lat": "",
+      "long": ""
+    },
+    {
+      "country": "",
+      "shortName": "",
+      "lat": "",
+      "long": ""
+    },
+    {
+      "country": "",
+      "shortName": "",
+      "lat": "",
+      "long": ""
+    },
+    {
+      "country": "",
+      "shortName": "",
+      "lat": "",
+      "long": ""
     }
   ]
 }
