@@ -8,9 +8,6 @@ const encoding = require("encoding"); // this is added (but not used) because of
 const app = express();
 const router = express.Router();
 
-const lawDsJson = require("./lawDsJson.json");
-const lawAsJson = require("./lawAsJson.json");
-const lawDgJson = require("./lawDgJson.json");
 const lawDsPinLocations = require("./lawDsPinLocations.json");
 const lawAsPinLocations = require("./lawAsPinLocations.json");
 const lawDgPinLocations = require("./lawDgPinLocations.json");
@@ -50,24 +47,7 @@ async function getGoogleSheetInfo(googleSheetID) {
 }
 
 // API Calls
-router.get("/api/law-ds", (req, res) => {
-  res.send({
-    lawDsJson,
-  });
-});
-
-router.get("/api/law-as", (req, res) => {
-  res.send({
-    lawAsJson,
-  });
-});
-
-router.get("/api/law-dg", (req, res) => {
-  res.send({
-    lawDgJson,
-  });
-});
-
+// To reach into Identity law Googlesheet
 router.get("/api/country-data/identity", async (req, res) => {
   let countryInfo;
   try {
@@ -78,6 +58,7 @@ router.get("/api/country-data/identity", async (req, res) => {
   res.send({ countryInfo });
 });
 
+// To reach into Autonomous-systems law Googlesheet
 router.get("/api/country-data/autonomous-systems", async (req, res) => {
   let countryInfo;
   try {
@@ -88,6 +69,7 @@ router.get("/api/country-data/autonomous-systems", async (req, res) => {
   res.send({ countryInfo });
 });
 
+// To reach into Personal Data Governance law Googlesheet
 router.get("/api/country-data/personal-data-governance", async (req, res) => {
   let countryInfo;
   try {
@@ -98,6 +80,7 @@ router.get("/api/country-data/personal-data-governance", async (req, res) => {
   res.send({ countryInfo });
 });
 
+// To reach into the country body text Googlesheet
 router.get("/api/country-data/country-info", async (req, res) => {
   let countryBodyText;
   try {
@@ -110,18 +93,22 @@ router.get("/api/country-data/country-info", async (req, res) => {
   res.send({ countryBodyText });
 });
 
+// API for country location master list
 router.get("/api/countryLocation", async (req, res) => {
   res.send({ countryLocation });
 });
 
+// API for Identity law countries locations for pins
 router.get("/api/law-dsCountryPins", async (req, res) => {
   res.send({ lawDsPinLocations });
 });
 
+// API for Autonomous Systems law countries locations for pins
 router.get("/api/law-asCountryPins", async (req, res) => {
   res.send({ lawAsPinLocations });
 });
 
+// API for Personal Data Governance law countries locations for pins
 router.get("/api/law-dgCountryPins", async (req, res) => {
   res.send({ lawDgPinLocations });
 });
