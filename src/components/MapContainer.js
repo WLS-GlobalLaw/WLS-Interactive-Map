@@ -1,14 +1,17 @@
 import React, { Component, Fragment } from "react";
 import { Map, TileLayer, Marker } from "react-leaflet";
+
 import "../styles/MapContainer.scss";
 
 import Buttons from "./Buttons";
 import Modal from "./Modal";
+
 import axios from "axios";
 
 // this will switch between Netlify deployment env route and local development env route
 const ACCESS_TOKEN =
   process.env.REACT_APP_ACCESS_TOKEN || process.env.REACT_APP_ACC_TOKEN_LOCAL;
+const ID = process.env.REACT_APP_ID || process.env.REACT_APP_ACC_ID_LOCAL;
 
 export default class MapContainer extends Component {
   constructor(props) {
@@ -24,6 +27,8 @@ export default class MapContainer extends Component {
       lawPinData: [],
       googlesheetData: [],
       googlesheetCountryBodyText: [],
+      changeComplete: false,
+      play: false,
     };
 
     this.changeCurrentLaw = this.changeCurrentLaw.bind(this);
@@ -36,6 +41,7 @@ export default class MapContainer extends Component {
     this.launchModal = this.launchModal.bind(this);
     this.getPinLocationData = this.getPinLocationData.bind(this);
     this.markersDetails = this.markersDetails.bind(this);
+    this.createMarkers = this.createMarkers.bind(this);
   }
 
   changeCurrentLaw(e) {
@@ -152,25 +158,37 @@ export default class MapContainer extends Component {
       "/.netlify/functions/server/api/countryLocation"
     );
     let pinLocationData = response.data.countryLocation.countries;
+    let pinData = [];
 
     for (let i = 0; i < pinLocationData.length; i++) {
       for (let j = 0; j < this.state.lawPinData.length; j++) {
         if (this.state.lawPinData[j] === pinLocationData[i].country) {
-          this.setState({
-            pinLocationInfo: [
-              ...this.state.pinLocationInfo,
-              pinLocationData[i],
-            ],
-          });
+          pinData.push(pinLocationData[i]);
         }
       }
     }
+    this.setState({
+      pinLocationInfo: pinData,
+    });
   }
 
   markersDetails(e) {
     let location = e.target.options.name;
     this.setState({ pinLocation: location }, () =>
       this.getGSDataAndLaunchModal()
+    );
+  }
+
+  createMarkers(pin) {
+    return (
+      <Marker
+        position={[pin.lat, pin.long]}
+        ref={this.pinRef}
+        onClick={this.markersDetails}
+        name={pin.country}
+        key={pin.country}
+        alt={"pin marker for " + pin.country}
+      />
     );
   }
 
@@ -201,22 +219,14 @@ export default class MapContainer extends Component {
             maxZoom={10}
             zoomDelta={0.1}
             zoomSnap={0}
-            id="chrisstanarsenault/cka0cv5op0e971ipj4a8qqnax"
+            id={ID}
             tileSize={512}
             zoomOffset={-1}
             accessToken={ACCESS_TOKEN}
           />
 
           {this.state.pinLocationInfo.length !== 0 &&
-            this.state.pinLocationInfo.map((pin) => (
-              <Marker
-                position={[pin.lat, pin.long]}
-                ref={this.pinRef}
-                onClick={this.markersDetails}
-                name={pin.country}
-                key={pin.country}
-              />
-            ))}
+            this.state.pinLocationInfo.map((pin) => this.createMarkers(pin))}
         </Map>
       </Fragment>
     );
