@@ -13,6 +13,33 @@ const lawAsPinLocations = require("./lawAsPinLocations.json");
 const lawDgPinLocations = require("./lawDgPinLocations.json");
 const countryLocation = require("./countryLocation.json");
 
+const clientEmail =
+  process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL ||
+  process.env.REACT_APP_GOOGLE_SERVICE_ACCOUNT_EMAIL;
+
+const privateKey =
+  process.env.GOOGLE_PRIVATE_KEY_LOCAL ||
+  process.env.REACT_APP_GOOGLE_PRIVATE_KEY.replace(
+    new RegExp("\\\\n", "g"),
+    "\n"
+  );
+
+const gsIdLawDS =
+  process.env.GOOGLE_SHEET_ID_LAW_DS ||
+  process.env.REACT_APP_GOOGLE_SHEET_ID_LAW_DS;
+
+const gsIdLawAS =
+  process.env.GOOGLE_SHEET_ID_LAW_AS ||
+  process.env.REACT_APP_GOOGLE_SHEET_ID_LAW_AS;
+
+const gsIdLawDG =
+  process.env.GOOGLE_SHEET_ID_LAW_DG ||
+  process.env.REACT_APP_GOOGLE_SHEET_ID_LAW_DG;
+
+const gsIdBodyText =
+  process.env.GOOGLE_SHEET_ID_BODY_TEXT ||
+  process.env.REACT_APP_GOOGLE_SHEET_ID_BODY_TEXT;
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -20,13 +47,9 @@ async function getGoogleSheetInfo(googleSheetID) {
   const doc = new GoogleSpreadsheet(googleSheetID);
 
   await doc.useServiceAccountAuth({
-    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    client_email: clientEmail,
     // regex/replace is there because netlify env on build was turning all /n's to //n's
-    private_key: process.env.GOOGLE_PRIVATE_KEY_LOCAL,
-    // process.env.REACT_APP_GOOGLE_PRIVATE_KEY.replace(
-    //   new RegExp("\\\\n", "g"),
-    //   "\n"
-    // ),
+    private_key: privateKey,
   });
   await doc.loadInfo();
   const sheet = doc.sheetsByIndex[0];
@@ -51,7 +74,7 @@ async function getGoogleSheetInfo(googleSheetID) {
 router.get("/api/country-data/identity", async (req, res) => {
   let countryInfo;
   try {
-    countryInfo = await getGoogleSheetInfo(process.env.GOOGLE_SHEET_ID_LAW_DS);
+    countryInfo = await getGoogleSheetInfo(gsIdLawDS);
   } catch (e) {
     console.error(e);
   }
@@ -62,7 +85,7 @@ router.get("/api/country-data/identity", async (req, res) => {
 router.get("/api/country-data/autonomous-systems", async (req, res) => {
   let countryInfo;
   try {
-    countryInfo = await getGoogleSheetInfo(process.env.GOOGLE_SHEET_ID_LAW_AS);
+    countryInfo = await getGoogleSheetInfo(gsIdLawAS);
   } catch (e) {
     console.error(e);
   }
@@ -73,7 +96,7 @@ router.get("/api/country-data/autonomous-systems", async (req, res) => {
 router.get("/api/country-data/personal-data-governance", async (req, res) => {
   let countryInfo;
   try {
-    countryInfo = await getGoogleSheetInfo(process.env.GOOGLE_SHEET_ID_LAW_DG);
+    countryInfo = await getGoogleSheetInfo(gsIdLawDG);
   } catch (e) {
     console.error(e);
   }
@@ -84,9 +107,7 @@ router.get("/api/country-data/personal-data-governance", async (req, res) => {
 router.get("/api/country-data/country-info", async (req, res) => {
   let countryBodyText;
   try {
-    countryBodyText = await getGoogleSheetInfo(
-      process.env.GOOGLE_SHEET_ID_BODY_TEXT
-    );
+    countryBodyText = await getGoogleSheetInfo(gsIdBodyText);
   } catch (e) {
     console.error(e);
   }
