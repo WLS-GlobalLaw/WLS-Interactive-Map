@@ -6,7 +6,7 @@ export default function Buttons(props) {
   return (
     <div>
       <div className="button-container">
-        <h3>Click on a law to highlight the countries that focusing on it</h3>
+        <h3>Click on a law to highlight the countries that focus on it</h3>
         <button
           id="law-ds"
           className="button decentralized-systems"

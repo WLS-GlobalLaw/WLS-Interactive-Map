@@ -17,6 +17,7 @@ const clientEmail =
   process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL ||
   process.env.REACT_APP_GOOGLE_SERVICE_ACCOUNT_EMAIL;
 
+// regex/replace is there because netlify env on build was turning all /n's to //n's
 const privateKey =
   process.env.GOOGLE_PRIVATE_KEY_LOCAL ||
   process.env.REACT_APP_GOOGLE_PRIVATE_KEY.replace(
@@ -48,7 +49,6 @@ async function getGoogleSheetInfo(googleSheetID) {
 
   await doc.useServiceAccountAuth({
     client_email: clientEmail,
-    // regex/replace is there because netlify env on build was turning all /n's to //n's
     private_key: privateKey,
   });
   await doc.loadInfo();
