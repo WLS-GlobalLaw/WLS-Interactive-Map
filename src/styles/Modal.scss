@@ -39,6 +39,7 @@ div.modal {
       overflow: auto;
       white-space: pre-wrap;
       height: 80rem;
+      width: 95%;
 
       & h2 {
         font-size: 4.5rem;
@@ -62,7 +63,11 @@ div.modal {
       & th {
         text-align: center;
         background-color: #ebebeb;
-        min-width: 13rem;
+
+        &:not(:last-child) {
+          min-width: 5rem;
+          max-width: 6rem;
+        }
       }
 
       & p {
