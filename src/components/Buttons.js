@@ -6,27 +6,27 @@ export default function Buttons(props) {
   return (
     <div>
       <div className="button-container">
-        <h3>Click on a law to highlight the countries that focus on it</h3>
+        <h3>Click on a Category to Highlight Country Details </h3>
         <button
           id="law-ds"
           className="button decentralized-systems"
           onClick={props.changeLaw}
         >
-          Identity and Decentralized Systems
+          Identity & Decentralized Technologies
         </button>
         <button
           id="law-as"
           className="button autonomous-systems"
           onClick={props.changeLaw}
         >
-          Autonomous Systems
+          AI & Autonomous Systems
         </button>
         <button
           id="law-dg"
           className="button data-governance"
           onClick={props.changeLaw}
         >
-          Data Governance
+          Personal Data Governance
         </button>
       </div>
     </div>
