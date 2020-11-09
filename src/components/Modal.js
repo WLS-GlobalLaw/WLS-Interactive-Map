@@ -2,18 +2,20 @@ import React, { Component } from "react";
 import "../styles/Modal.scss";
 
 export default class Modal extends Component {
-  constructor(props) {
-    super(props);
-    this.checkIfBodyTextExists = this.checkIfBodyTextExists.bind(this);
-  }
+  // uncomment both sections once Aileen greenlights using bodytext again
+  // constructor(props) {
+  //   super(props);
+  //   this.checkIfBodyTextExists = this.checkIfBodyTextExists.bind(this);
+  // }
 
-  checkIfBodyTextExists() {
-    if (this.props.googleSheetCountryBodyText.length !== 0) {
-      return this.props.googleSheetCountryBodyText[0].bodyText;
-    } else {
-      return "TBD";
-    }
-  }
+  // disabled for now until better bodytext information can be submitted as per Aileen
+  // checkIfBodyTextExists() {
+  //   if (this.props.googleSheetCountryBodyText.length !== 0) {
+  //     return this.props.googleSheetCountryBodyText[0].bodyText;
+  //   } else {
+  //     return "TBD";
+  //   }
+  // }
   render() {
     return (
       <div id="myModal" className="modal">
@@ -25,8 +27,7 @@ export default class Modal extends Component {
             <h2 className="content-title">
               {this.props.googleSheetInfo[0].country}
             </h2>
-            <p className="modal-text">{this.checkIfBodyTextExists()}</p>
-            {console.log(this.checkIfBodyTextExists())}
+            {/* <p className="modal-text">{this.checkIfBodyTextExists()}</p> */}
             <div>
               <h3>Existing Bills, Laws, and Standards</h3>
               <table>
