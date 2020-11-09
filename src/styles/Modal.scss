@@ -24,7 +24,8 @@ div.modal {
     margin: auto;
     width: 80%;
     height: 80vh;
-    box-shadow: 0 0 40px #000000b3, inset 0rem 0rem 2rem .5rem rgba(54, 56, 57, 0.62);
+    box-shadow: 0 0 40px #000000b3,
+      inset 0rem 0rem 2rem 0.5rem rgba(54, 56, 57, 0.62);
     border-radius: 10px;
     text-align: center;
     font-size: 2.2rem;
@@ -43,7 +44,10 @@ div.modal {
         font-size: 4.5rem;
       }
 
-      & table, tr, td {
+      & table,
+      tr,
+      td,
+      th {
         border: 1px solid black;
       }
 
@@ -53,6 +57,12 @@ div.modal {
 
       & td {
         padding: 10px;
+      }
+
+      & th {
+        text-align: center;
+        background-color: #ebebeb;
+        min-width: 13rem;
       }
 
       & p {
