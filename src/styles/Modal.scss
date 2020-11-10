@@ -58,15 +58,12 @@ div.modal {
 
       & td {
         padding: 10px;
+        min-width: 16rem;
       }
 
       & th {
         text-align: center;
         background-color: #ebebeb;
-
-        &:not(:last-child) {
-          min-width: 5rem;
-        }
       }
 
       & p {
