@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import "../styles/Modal.scss";
+import React, { Component } from 'react';
+import '../styles/Modal.scss';
 
 export default class Modal extends Component {
   // uncomment both sections once Aileen greenlights using bodytext again
@@ -24,12 +24,9 @@ export default class Modal extends Component {
             &times;
           </span>
           <div className="inner-content">
-            <h2 className="content-title">
-              {this.props.googleSheetInfo[0].country}
-            </h2>
+            <h2 className="content-title">{this.props.googleSheetInfo[0].country}</h2>
             {/* <p className="modal-text">{this.checkIfBodyTextExists()}</p> */}
             <div>
-              <h3>Existing Bills, Laws, and Standards</h3>
               <table>
                 <thead>
                   <tr>
@@ -40,7 +37,7 @@ export default class Modal extends Component {
                 </thead>
                 <tbody>
                   {this.props.googleSheetInfo.map((item, index) => (
-                    <tr key={index} style={{ border: "1px solid black" }}>
+                    <tr key={index} style={{ border: '1px solid black' }}>
                       <td border={1}>{item.typeOfLegislation}</td>
                       <td>{item.titleOfLaw}</td>
                       <td>{item.description}</td>
